@@ -1,0 +1,4 @@
+app:
+  applicationId: 28ae1551-0358-4188-82ff-de7270878f72 
+  env: Development 
+  host: http://185.254.57.31:8083 
