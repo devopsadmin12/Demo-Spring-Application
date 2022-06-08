@@ -20,8 +20,8 @@ pipeline {
     stage ('SAST') {
       steps {
         withSonarQubeEnv('sonarqube') {
-          sh 'mvn sonar:sonar -DskipTests'
-          -Dsonar.java.binaries=target/classes
+          sh 'mvn clean install sonar:sonar -Dsonar.projectKey=groupId:artifactId -Dsonar.host.url=http://10.0.2.15:9000 -Dsonar.login=loginHASH -Dsonar.sources=src/main/java/ -Dsonar.java.binaries=target/classes'
+            
           sh 'cat target/sonar/report-task.txt'
         }
       }
