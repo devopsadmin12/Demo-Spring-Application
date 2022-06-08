@@ -20,7 +20,7 @@ pipeline {
     stage ('SAST') {
       steps {
         withSonarQubeEnv('sonarqube') {
-          sh 'mvn sonar:sonar'
+          sh 'mvn -fn -e org.sonarsource.scanner.maven:sonar-maven-plugin:RELEASE:sonar -Dsonar.jdbc.url="jdbc:mysql://10.0.2.15:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance" -Dsonar.host.url=http://localhost:9000 -DskipTests'
           sh 'cat target/sonar/report-task.txt'
         }
       }
