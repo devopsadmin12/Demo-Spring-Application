@@ -25,7 +25,7 @@ pipeline {
           -D sonar.sources=src/main/java \
           -D sonar.sourceEncoding=UTF-8 \
           -D sonar.language=java \
-          -D sonar.java.binaries=target/classes
+          -D sonar.java.binaries=target/classes /
         }
       }
     }
