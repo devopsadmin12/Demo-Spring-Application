@@ -20,8 +20,12 @@ pipeline {
     stage ('SAST') {
       steps {
         withSonarQubeEnv('sonarqube') {
-          sh 'mvn sonar:sonar'
-          sh 'sonar.java.binaries=target/classes'
+         sh "${scannerHome}/bin/sonar-scanner \
+          -D sonar.projectVersion=1.0
+          -D sonar.sources=src/main/java
+          -D sonar.sourceEncoding=UTF-8
+          -D sonar.language=java
+          -D sonar.java.binaries=target/classes
         }
       }
     }
