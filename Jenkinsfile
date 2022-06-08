@@ -20,7 +20,7 @@ pipeline {
     stage ('SAST') {
       steps {
         withSonarQubeEnv('sonarqube') {
-          sh 'mvn clean package sonar:sonar'
+          sh 'mvn sonar:sonar'
           sh 'sonar.java.binaries=target/classes'
         }
       }
