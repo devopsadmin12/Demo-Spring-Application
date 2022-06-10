@@ -1,0 +1,27 @@
+pipeline {
+  agent any 
+  stages {
+  
+  stage ("Git checkout"){
+			steps {
+				git branch: "master",
+					url: "https://github.com/devopsadmin12/Demo-Spring-Application.git"
+          }
+         } 
+  
+ stage('Build'){
+            steps{
+                sh 'mvn clean install'
+            }
+         }
+ stage ('SAST') {
+      steps {
+        withSonarQubeEnv('sonarqube') {
+          sh 'mvn sonar:sonar'
+          sh 'cat target/sonar/report-task.txt'
+        }
+      }
+    }
+    
+  }
+}
